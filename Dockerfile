@@ -1,7 +1,7 @@
 FROM vborja/asdf-alpine:latest
 
-ENV ERLANG_VERSION "21.0.9"
-ENV ELIXIR_VERSION "1.7.4"
+ENV ERLANG_VERSION "21.2.3"
+ENV ELIXIR_VERSION "1.8.0"
 ENV NODE_JS_VERSION="8.10.0"
 ENV TIMEZONE "Europe/Moscow"
 
@@ -15,7 +15,7 @@ RUN asdf update --head
 # Adding Erlang, Elixir and NodeJS plugins
 RUN asdf plugin-add erlang && \
     asdf plugin-add elixir && \
-    asdf plugin-add nodejs
+    asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
     
 # Adding Erlang installation and dependencies requirements
 USER root
@@ -46,7 +46,7 @@ RUN gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys 94AE36675C464D64BAF
     gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys 77984A986EBC2AA786BC0F66B01FBB92821C587A
 
 # Adding NodeJS LTS
-RUN asdf install nodejs $NODE_JS_VERSION
+RUN NODEJS_CHECK_SIGNATURES=no asdf install nodejs $NODE_JS_VERSION
 
 # Setting global versions
 RUN asdf global erlang $ERLANG_VERSION && \
