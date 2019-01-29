@@ -34,7 +34,7 @@ RUN asdf install elixir $ELIXIR_VERSION && \
 
 # NodeJS requirements
 USER root
-RUN apk add curl make gcc g++ python linux-headers binutils-gold gnupg perl-utils libstdc++
+RUN apk add curl make gcc g++ python linux-headers binutils-gold gnupg rsync openssh perl-utils libstdc++
 USER asdf
 RUN gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys 94AE36675C464D64BAFA68DD7434390BDBE9B9C5 && \
     gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys FD3A5288F042B6850C66B31F09FE44734EB7990E && \
